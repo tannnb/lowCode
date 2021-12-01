@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     hello Vue3
+    <a-button type="primary">Primary Button</a-button>
   </div>
 </template>
 
