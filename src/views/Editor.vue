@@ -1,6 +1,5 @@
-<script src="../../../src/main.ts"></script>
 <template>
-  <div>123</div>
+  <div>editor</div>
 </template>
 
 <script>

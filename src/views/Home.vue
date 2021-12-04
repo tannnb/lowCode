@@ -1,37 +1,41 @@
 <template>
-  <div class="home-container">
-    <a-layout :style="{background:'#fff'}">
-      <a-layout-header class="header">
-         <div class="page-title">标题</div>
-      </a-layout-header>
-      <a-layout-content class="home-layout">
-        <div class="content-container">
-          <template-list />
-        </div>
-      </a-layout-content>
-      <a-layout-footer>
-        @copyright
-      </a-layout-footer>
-    </a-layout>
+  <div class="content-container">
+    <template-list :list="testData"></template-list>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+import { GlobalDataProps } from '@/store'
 import TemplateList from '../components/TemplateList.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     TemplateList
+  },
+  setup () {
+    const store = useStore<GlobalDataProps>()
+    const testData = computed(() => store.state.templates.data)
+
+    const router = useRoute()
+
+    return {
+      testData,
+      router
+    }
   }
 })
 </script>
-
 <style lang="less" scoped>
-.home-container{
-  .header{}
-  .home-layout{}
-  .header{}
+.content-container {
+  background: #fff;
+  padding: 0 24px 24px 30px;
+  min-height: 85vh;
+  max-width: 1200px;
+  margin: 50px auto;
+  width: 100%;
 }
 </style>
