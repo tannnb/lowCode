@@ -1,13 +1,75 @@
-<template>
-  <div>editor</div>
+﻿<template>
+  <div class="editor-container">
+    <a-layout>
+      <a-layout-sider width="300" style="background: #fff">
+        <div class="sidebar-container">
+          组件列表
+        </div>
+      </a-layout-sider>
+      <a-layout style="padding: 0 24px 24px">
+        <a-layout-content class="preview-container">
+          <p>画布区域</p>
+          <div class="preview-list" id="canvas-area">
+            <component v-for="component in components"
+                       :key="component.id"
+                       :is="component.name"
+                       v-bind="component.props"/>
+          </div>
+        </a-layout-content>
+      </a-layout>
+      <a-layout-sider width="300" style="background: #fff" class="settings-panel">
+        组件属性
+      </a-layout-sider>
+    </a-layout>
+  </div>
 </template>
 
-<script>
-export default {
-  name: 'Editor'
-}
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { useStore } from 'vuex'
+import { GlobalDataProps } from '@/store'
+import LText from '../components/LText.vue'
+
+export default defineComponent({
+  name: 'Editor',
+  components: {
+    LText
+  },
+  setup () {
+    const store = useStore<GlobalDataProps>()
+    const components = computed(() => store.state.editor.components)
+    console.log('components', components)
+    return {
+      components
+    }
+  }
+})
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+.editor-container {
+  .preview-container {
+    padding: 24px;
+    margin: 0;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
 
+  .preview-list {
+    padding: 0;
+    margin: 0;
+    min-width: 375px;
+    min-height: 200px;
+    border: 1px solid #efefef;
+    background: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    margin-top: 50px;
+    max-height: 80vh;
+  }
+}
 </style>

@@ -7,13 +7,15 @@ interface ComponentData {
   id: string;
   name: string
 }
+
 export interface EditorProps {
   components: ComponentData[];
   currentElement?: string
 }
 
-const testData:ComponentData[] = [
-  { id: uuidv4(), name: 'a-input', props: { text: 'hello' } }
+const testData: ComponentData[] = [
+  { id: uuidv4(), name: 'l-text', props: { text: 'hello', fontSize: '20px', color: 'red' } },
+  { id: uuidv4(), name: 'l-text', props: { text: 'hello123', fontSize: '28px' } }
 ]
 
 const editor: Module<EditorProps, GlobalDataProps> = {
