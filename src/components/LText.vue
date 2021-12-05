@@ -1,7 +1,7 @@
 <template>
-<component :is="tag"  class="l-text-component" :style="styleProps">
-  {{text}}
-</component>
+  <component :is="tag" class="l-text-component" :style="styleProps">
+    {{ text }}
+  </component>
 </template>
 
 <script lang="ts">
@@ -30,7 +30,8 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-h2.l-text-component, p.l-text-component {
+h2.l-text-component,
+p.l-text-component {
   margin-bottom: 0;
 }
 button.l-text-component {
