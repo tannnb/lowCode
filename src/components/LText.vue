@@ -7,27 +7,21 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { pick } from 'lodash-es'
+import { transformToComponentProps, textDefaultProps, textStylePropNames } from '@/defaultProps'
 
+const defaultProps = transformToComponentProps(textDefaultProps)
 export default defineComponent({
   name: 'l-text',
   props: {
-    text: {
-      type: String
-    },
-    fontSize: {
-      type: String
-    },
-    color: {
-      type: String
-    },
     tag: {
       type: String,
       default: 'div'
-    }
+    },
+    ...defaultProps
   },
   setup (props) {
-    console.log(props)
-    const styleProps = computed(() => pick(props, ['fontSize', 'color']))
+    console.log(textStylePropNames)
+    const styleProps = computed(() => pick(props, textStylePropNames))
     return {
       styleProps
     }

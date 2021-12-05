@@ -38,7 +38,6 @@ export default defineComponent({
   setup () {
     const store = useStore<GlobalDataProps>()
     const components = computed(() => store.state.editor.components)
-    console.log('components', components)
     return {
       components
     }
