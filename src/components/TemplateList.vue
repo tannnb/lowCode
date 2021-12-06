@@ -6,10 +6,7 @@
           <a-card hoverable>
             <template v-slot:cover>
               <img :src="item.coverImg" v-if="item.coverImg" />
-              <img
-                src="http://typescript-vue.oss-cn-beijing.aliyuncs.com/vue-marker/5f81cca3f3bf7a0e1ebaf885.png"
-                v-else
-              />
+              <img src="http://typescript-vue.oss-cn-beijing.aliyuncs.com/vue-marker/5f81cca3f3bf7a0e1ebaf885.png" v-else/>
               <div class="hover-item">
                 <a-button size="large" type="primary">使用该模版创建</a-button>
               </div>

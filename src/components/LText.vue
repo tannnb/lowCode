@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { transformToComponentProps, textDefaultProps, textStylePropNames } from '@/defaultProps'
+import { defineComponent } from 'vue'
 import useComponentCommon from '../hooks/useComponentCommon'
+import { transformToComponentProps, textDefaultProps, textStylePropNames } from '@/defaultProps'
+
 const defaultProps = transformToComponentProps(textDefaultProps)
 export default defineComponent({
   name: 'l-text',
