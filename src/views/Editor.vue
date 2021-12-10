@@ -23,7 +23,7 @@
       </a-layout>
       <a-layout-sider width="300" style="background: #fff" class="settings-panel">
         组件属性
-        {{ currentElement && currentElement.props }}
+        <props-table v-if="currentElement && currentElement.props" :props="currentElement.props" />
       </a-layout-sider>
     </a-layout>
   </div>
@@ -34,16 +34,20 @@ import { useStore } from 'vuex'
 import { GlobalDataProps } from '@/store'
 import { ComponentData } from '@/store/editor'
 import { computed, defineComponent } from 'vue'
-import LText from '@/components/LText.vue'
-import EditWrapper from '@/components/EditWrapper.vue'
-import ComponentsList from '@/components/ComponentsList.vue'
+
 import { defaultTextTemplates } from '@/defaultTemplates'
 import { TextComponentProps } from '@/defaultProps'
+
+import LText from '@/components/LText.vue'
+import PropsTable from '@/components/PropsTable.vue'
+import EditWrapper from '@/components/EditWrapper.vue'
+import ComponentsList from '@/components/ComponentsList.vue'
 
 export default defineComponent({
   name: 'Editor',
   components: {
     LText,
+    PropsTable,
     EditWrapper,
     ComponentsList
   },
