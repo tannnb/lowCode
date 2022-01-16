@@ -22,7 +22,7 @@ export const mapPropsToForms: PropsToForms = {
     component: 'a-input-number'
   },
   lineHeight: {
-    text: '行高',
+    text: '行高 ',
     component: 'a-slider',
     extraProps: { min: 0, max: 3, step: 0.1 }
   }

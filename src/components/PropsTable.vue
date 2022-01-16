@@ -28,8 +28,6 @@ export default defineComponent({
     }
   },
   setup (props) {
-    console.log(props.props)
-
     const finalProps = computed(() => {
       return reduce(
         props.props,
@@ -47,7 +45,6 @@ export default defineComponent({
         {} as Required<PropsToForms>
       )
     })
-    console.log(finalProps)
 
     return {
       finalProps
