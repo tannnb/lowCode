@@ -1,7 +1,14 @@
 <template>
   <div class="props-table">
-    <div v-for="(item,index) in finalProps" :key="index" class="prop-item">
-      <component v-if="item" :is="item.component" :value="item.value"></component>
+    <div v-for="(item, index) in finalProps" :key="index" class="prop-item">
+      <span class="label" v-if="item.text">{{item.text}}</span>
+      <component
+        class="prop-component"
+        v-if="item"
+        :is="item.component"
+        v-bind="item.extraProps"
+        :value="item.value"
+      />
     </div>
   </div>
 </template>
@@ -10,7 +17,7 @@
 import { computed, defineComponent, PropType } from 'vue'
 import { reduce } from 'lodash'
 import { TextComponentProps } from '@/defaultProps'
-import { mapPropsToForms, PropsToForms } from '@/propsMap.ts'
+import { mapPropsToForms, PropsToForms } from '@/propsMap'
 
 export default defineComponent({
   name: 'PropsTable',
@@ -21,19 +28,27 @@ export default defineComponent({
     }
   },
   setup (props) {
+    console.log(props.props)
+
     const finalProps = computed(() => {
-      return reduce(props.props, (result, value, key) => {
-        // key为string 不能直接从PropsToForms中获取类型，解决方法:将key 断言为TextComponentProps
-        // newKey : 'text' | 'fontSize' = keys as keyof xxx  (as理解成作为)
-        const newKey = key as keyof TextComponentProps
-        const item = mapPropsToForms[newKey]
-        if (item) {
-          item.value = value
-          result[newKey] = item
-        }
-        return result
-      }, {} as PropsToForms)
+      return reduce(
+        props.props,
+        (result, value, key) => {
+          // key为string 不能直接从PropsToForms中获取类型，解决方法:将key 断言为TextComponentProps
+          // newKey : 'text' | 'fontSize' = keys as keyof xxx  (as理解成作为)
+          const newKey = key as keyof TextComponentProps
+          const item = mapPropsToForms[newKey]
+          if (item) {
+            item.value = value
+            result[newKey] = item
+          }
+          return result
+        },
+        {} as Required<PropsToForms>
+      )
     })
+    console.log(finalProps)
+
     return {
       finalProps
     }
@@ -51,7 +66,6 @@ export default defineComponent({
 .label {
   width: 28%;
 }
-
 .prop-component {
   width: 70%;
 }
