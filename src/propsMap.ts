@@ -1,10 +1,13 @@
 import { TextComponentProps } from '@/defaultProps'
 
 export interface PropToForm {
-  text?:string;
+  text?: string;
   component: string;
+  subComponent?: string;
   value?: string;
   extraProps?: { [key: string]: any };
+  options?: { value: any; text: string }[];
+  initalTransform?:(value:any) => any
 }
 
 export type PropsToForms = {
@@ -19,11 +22,35 @@ export const mapPropsToForms: PropsToForms = {
   },
   fontSize: {
     text: '字号',
-    component: 'a-input-number'
+    component: 'a-input-number',
+    initalTransform: (value) => parseInt(value)
   },
   lineHeight: {
-    text: '行高 ',
+    text: '行高',
     component: 'a-slider',
-    extraProps: { min: 0, max: 3, step: 0.1 }
+    extraProps: { min: 0, max: 3, step: 0.1 },
+    initalTransform: (value) => parseFloat(value)
+  },
+  textAlign: {
+    text: '对齐',
+    component: 'a-raido-group',
+    subComponent: 'a-radio-button',
+    options: [
+      { value: 'left', text: '左' },
+      { value: 'center', text: '中' },
+      { value: 'right', text: 'right' }
+    ]
+  },
+  fontFamily: {
+    text: '字体',
+    component: 'a-select',
+    subComponent: 'a-select-option',
+    options: [
+      { text: '', value: '无' },
+      { text: '宋体', value: '"SimSun","STSong"' },
+      { text: '黑体', value: '"SimHei","STHeiti"' },
+      { text: '楷体', value: '"KaiTi","STKaiti"' },
+      { text: '仿宋', value: '"FangSong","STFangsong"' }
+    ]
   }
 }

@@ -1,14 +1,23 @@
 <template>
   <div class="props-table">
     <div v-for="(item, index) in finalProps" :key="index" class="prop-item">
-      <span class="label" v-if="item.text">{{item.text}}</span>
+      <span class="label" v-if="item.text">{{ item.text }}</span>
       <component
-        class="prop-component"
         v-if="item"
+        class="prop-component"
         :is="item.component"
         v-bind="item.extraProps"
         :value="item.value"
-      />
+      >
+        <template v-if="item.options">
+          <component
+            v-for="(option, key) in item.options"
+            :key="key"
+            :is="item.subComponent"
+            :value="item.value"
+          >{{option.text}}</component>
+        </template>
+      </component>
     </div>
   </div>
 </template>
@@ -37,7 +46,7 @@ export default defineComponent({
           const newKey = key as keyof TextComponentProps
           const item = mapPropsToForms[newKey]
           if (item) {
-            item.value = value
+            item.value = item.initalTransform ? item.initalTransform(value) : value
             result[newKey] = item
           }
           return result
