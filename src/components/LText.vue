@@ -20,6 +20,8 @@ export default defineComponent({
     ...defaultProps
   },
   setup (props) {
+    console.log(props)
+
     const { styleProps, handleClick } = useComponentCommon(props, textStylePropNames)
     return {
       styleProps,
