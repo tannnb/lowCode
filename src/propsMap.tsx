@@ -27,7 +27,7 @@ const fontFamilyOptions = fontFamilyArray.map((font) => {
   return {
     value: font.value,
     text: (
-      <span style={{ fontFamily: font.value }}>{font.text}</span>
+      <span style={{ fontFamily: font.value }}>{ font.text }</span>
     ) as VNode,
   };
 });
@@ -59,7 +59,7 @@ export const mapPropsToForms: PropsToForms = {
     options: [
       { value: "left", text: "左" },
       { value: "center", text: "中" },
-      { value: "right", text: "right" },
+      { value: "right", text: "右" },
     ],
     afterTransform: (e: any) => e.target.value,
   },
