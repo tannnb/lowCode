@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="work-detail-container">
     <a-row type="flex" justify="center" v-if="template">
       <a-col :span="8" class="cover-img">

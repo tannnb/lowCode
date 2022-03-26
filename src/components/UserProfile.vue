@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <a-button type="primary" v-if="!user.isLogin" class="user-profile-component" @click="login">
     登录
   </a-button>

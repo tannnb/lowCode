@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="editor-container">
     <a-layout>
       <a-layout-sider width="300" style="background: #fff">
