@@ -1,7 +1,10 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount, mount, flushPromises } from '@vue/test-utils'
 import HelloWorld from '@/components/HelloWorld.vue'
 import Hello from '@/components/Hello.vue'
-
+import axios from 'axios'
+import { wrap } from 'lodash-es'
+jest.mock('axios')
+const mockAxios = axios as jest.Mocked<typeof axios>
 // mount和shallowMount区别
 // mount 会全部渲染出来
 // shallowMount 只渲染组件本身，外来的子组件都不渲染(更合适单元测试)
@@ -52,5 +55,21 @@ describe('HelloWorld.vue', () => {
     expect(wrapper.emitted()).toHaveProperty('send')
     const event = wrapper.emitted('send') || []
     expect(event[0]).toEqual([todoContent])
+  })
+
+  it.only('测试异步请求数据:', async () => {
+    const msg = '这是新传入的信息'
+    const wrapper = shallowMount(HelloWorld, {
+      props: { msg }
+    })
+    // 拦截axios的get请求
+    mockAxios.get.mockResolvedValueOnce({ data: { username: '张三' } })
+    await wrapper.get('.loadUser').trigger('click')
+    expect(mockAxios.get).toHaveBeenCalled() // 判断axios是否被调用了
+    expect(wrapper.find('.loading').exists()).toBeTruthy()
+    await flushPromises()
+    // 界面更新完毕、
+    expect(wrapper.find('.loading').exists()).toBeFalsy()
+    expect(wrapper.get('.userName').text()).toBe('张三')
   })
 })

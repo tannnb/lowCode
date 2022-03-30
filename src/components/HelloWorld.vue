@@ -9,11 +9,17 @@
       <li v-for="(todo,index) in todos" :key="index">{{todo}}</li>
     </ul>
     <Hello msg="123" />
+
+    <button  class="loadUser" @click="loadUser">请求</button>
+    <div v-if='user.loading' class="loading">Loading</div>
+    <div v-else class="userName">{{user.data && user.data.username}}</div>
+    <div v-if='user.error' class="loaderroring">error!</div>
+
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, reactive } from 'vue'
 import Hello from './Hello.vue'
 
 export default defineComponent({
@@ -38,12 +44,36 @@ export default defineComponent({
       }
     }
 
+    const getData = () => {
+      return Promise.resolve(setTimeout({ data: { username: '张三' } }, 100))
+    }
+
+    const user = reactive({
+      data: null,
+      loading: false,
+      error: false
+    })
+
+    const loadUser = () => {
+      user.loading = true
+      getData().then(resp => {
+        console.log('resp')
+        user.data = resp.data
+      }).catch(() => {
+        user.error = true
+      }).finally(() => {
+        user.loading = false
+      })
+    }
+
     return {
       hanldeClick,
       btnRef,
       todo,
       addTodo,
-      todos
+      todos,
+      user,
+      loadUser
     }
   }
 })
