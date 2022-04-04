@@ -1,4 +1,4 @@
-import { shallowMount, mount, flushPromises } from '@vue/test-utils'
+import { shallowMount, mount, flushPromises, VueWrapper } from '@vue/test-utils'
 import HelloWorld from '@/components/HelloWorld.vue'
 import Hello from '@/components/Hello.vue'
 import axios from 'axios'
@@ -16,21 +16,22 @@ const mockAxios = axios as jest.Mocked<typeof axios>
 
 // 使用getComponent的意义
 // 不必须测试子组件里面的内容，只要判断知否渲染了子组件，是否传递了正确的属性就可以了
+
+const msg = '这是新传入的信息'
+let wrapper:VueWrapper<any>
 describe('HelloWorld.vue', () => {
-  it('测试组件渲染与props数据传递:', () => {
-    const msg = '这是新传入的信息'
-    const wrapper = shallowMount(HelloWorld, {
+  // 执行测试之前勾子
+  beforeAll(() => {
+    wrapper = shallowMount(HelloWorld, {
       props: { msg }
     })
+  })
+  it('测试组件渲染与props数据传递:', () => {
     // console.log(wrapper.get('h1').text())
     console.log(wrapper.findAllComponents(Hello))
   })
 
   it('测试HelloWorld组件内按钮点击事件:', async () => {
-    const msg = '这是新传入的信息'
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg }
-    })
     // trigger为异步,需等到view更新后在断言
     await wrapper.get('button').trigger('click')
     console.log(wrapper.html())
@@ -38,11 +39,7 @@ describe('HelloWorld.vue', () => {
   })
 
   it('测试输入框更改后,点击按钮，渲染时候时候更新:', async () => {
-    const msg = '这是新传入的信息'
     const todoContent = '找到input元素调用setValue设置值'
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg }
-    })
     await wrapper.get('input').setValue(todoContent)
     console.log('input当前设置的值:', wrapper.get('input').element.value)
 
@@ -58,10 +55,6 @@ describe('HelloWorld.vue', () => {
   })
 
   it.only('测试异步请求数据:', async () => {
-    const msg = '这是新传入的信息'
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg }
-    })
     // 拦截axios的get请求
     mockAxios.get.mockResolvedValueOnce({ data: { username: '张三' } })
     await wrapper.get('.loadUser').trigger('click')
@@ -71,5 +64,9 @@ describe('HelloWorld.vue', () => {
     // 界面更新完毕、
     expect(wrapper.find('.loading').exists()).toBeFalsy()
     expect(wrapper.get('.userName').text()).toBe('张三')
+  })
+
+  afterEach(() => {
+    //  测试用例执行完之后，进行一些处理
   })
 })
