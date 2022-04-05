@@ -19,7 +19,7 @@ const mockAxios = axios as jest.Mocked<typeof axios>
 
 const msg = '这是新传入的信息'
 let wrapper:VueWrapper<any>
-describe('HelloWorld.vue', () => {
+xdescribe('HelloWorld.vue', () => {
   // 执行测试之前勾子
   beforeAll(() => {
     wrapper = shallowMount(HelloWorld, {

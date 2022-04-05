@@ -1,16 +1,6 @@
 import { Module } from 'vuex'
 import { GlobalDataProps } from '@/store/index'
 
-const testData = [
-  {
-    id: 1,
-    title: '测试',
-    author: '化石',
-    copiedCount: 100,
-    coverImg: 'https://img1.baidu.com/it/u=1138353382,2851748851&fm=26&fmt=auto'
-  }
-]
-
 export interface TemplateProps {
   id: number;
   title: string;
@@ -22,6 +12,16 @@ export interface TemplateProps {
 export interface TemplatesProps {
   data: TemplateProps[]
 }
+
+export const testData: TemplateProps[] = [
+  {
+    id: 1,
+    coverImg: 'https://static.imooc-lego.com/upload-files/screenshot-889755.png',
+    title: 'test title 1',
+    author: '测试用户',
+    copiedCount: 1
+  }
+]
 
 const templates: Module<TemplatesProps, GlobalDataProps> = {
   state: {
