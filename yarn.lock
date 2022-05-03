@@ -1512,6 +1512,13 @@
   "resolved" "https://registry.npmmirror.com/@types/range-parser/download/@types/range-parser-1.2.4.tgz"
   "version" "1.2.4"
 
+"@types/rgb-hex@^3.0.0":
+  "integrity" "sha512-0F5sldbUdaEGn6LliO5RqFh3Uk8EVPrSTVQk9RaHDK+lAQfBLd4Xve2OXRIOaccvcHsS+lpMXg9EItLlO99xrw=="
+  "resolved" "https://registry.npmmirror.com/@types/rgb-hex/-/rgb-hex-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "rgb-hex" "*"
+
 "@types/serve-static@*":
   "integrity" "sha1-9eDOh5fS18xevtpIpSyWxPpHqNk="
   "resolved" "https://registry.npmmirror.com/@types/serve-static/download/@types/serve-static-1.13.10.tgz"
@@ -9622,6 +9629,11 @@
   "integrity" "sha1-kNo4Kx4SbvwCFG6QhFqI2xKSXXY="
   "resolved" "https://registry.nlark.com/reusify/download/reusify-1.0.4.tgz"
   "version" "1.0.4"
+
+"rgb-hex@*", "rgb-hex@^4.0.0":
+  "integrity" "sha512-Eg2ev5CiMBnQ9Gpflmqbwbso0CCdISqtVIow7OpYSLN1ULUv2jTB9YieS1DSSn/17AD7KkPWDPzSFzI4GSuu/Q=="
+  "resolved" "https://registry.npmmirror.com/rgb-hex/-/rgb-hex-4.0.0.tgz"
+  "version" "4.0.0"
 
 "rgb-regex@^1.0.1":
   "integrity" "sha1-wODWiC3w4jviVKR16O3UGRX+rrE="

@@ -4,7 +4,7 @@ import { testComponents, ComponentData } from '@/store/editor'
 import { clone, last } from 'lodash-es'
 const cloneComponents = clone(testComponents)
 
-describe('测试vuex store', () => {
+xdescribe('测试vuex store', () => {
   it('测试加载user模块加载', () => {
     expect(store.state).toHaveProperty('user')
   })
@@ -15,7 +15,7 @@ describe('测试vuex store', () => {
     expect(store.state).toHaveProperty('editor')
   })
 
-  describe('测试user模块', () => {
+  xdescribe('测试user模块', () => {
     it('测试 login mutation', () => {
       store.commit('login')
       expect(store.state.user.isLogin).toBeTruthy()
@@ -26,7 +26,7 @@ describe('测试vuex store', () => {
     })
   })
 
-  describe('测试 templates 模块', () => {
+  xdescribe('测试 templates 模块', () => {
     it('templates默认数据长度', () => {
       expect(store.state.templates.data).toHaveLength(testData.length)
     })
@@ -36,7 +36,7 @@ describe('测试vuex store', () => {
     })
   })
 
-  describe('测试 editor 模块', () => {
+  xdescribe('测试 editor 模块', () => {
     it('测试组件数据是否正确', () => {
       expect(store.state.editor.components).toHaveLength(cloneComponents.length)
     })
