@@ -68,5 +68,9 @@ export const mapPropsToForms: PropsToForms = {
     component: 'a-select',
     subComponent: 'a-select-option',
     options: [{ text: '无', value: '' }, ...fontFamilyOptions]
+  },
+  color: {
+    text: '字体颜色',
+    component: 'color-picker'
   }
 }

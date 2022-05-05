@@ -1,10 +1,12 @@
 <template>
-  <div class="leo-color-picker">
+  <div class="lego-color-picker">
     <div class="native-color-container">
       <input type="color" :value="value" @input="onChange($event.target.value)">
     </div>
     <ul class="picked-color-list">
-      <li v-for="(item,index) in colors"  :key="`item-${index}`"
+      <li v-for="(item,index) in colors"
+          :key="`item-${index}`"
+          :class="`item-${key}`"
           @click.prevent="onChange(item)"
       >
         <div :style="{backgroundColor:item}" class="color-item" v-if="item.startsWith('#')"></div>
@@ -40,7 +42,51 @@ export default defineComponent({
   }
 })
 </script>
+<style scoped lang="less">
+.lego-color-picker {
+  display: flex;
+  .native-color-container {
+    width: 40%;
+    input[type="color"] {
+      width: 100%;
+      cursor: pointer;
+      height: 50px;
+      border: 0;
+      padding: 0;
+      background-color: transparent;
+    }
+  }
+  .picked-color-list {
+    padding: 0 0 0 5px;
+    margin: 0;
+    width: 60%;
+    display: flex;
+    list-style-type: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    li {
+      flex: 1;
+      width: 20%;
+      min-width: 20%;
+      max-width: 20%;
+    }
+    .color-item {
+      padding: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      margin-right: 5px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+    .transparent-back {
+      background: url('~@/assets/transparent.png') no-repeat;
+    }
+  }
+}
 
-<style scoped>
+
+
+
 
 </style>
