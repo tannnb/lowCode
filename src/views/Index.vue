@@ -1,5 +1,6 @@
 <template>
   <div class="home-container">
+    <Uploader></Uploader>
     <a-layout :style="{background:'#fff'}">
       <a-layout-header class="header">
         <div class="page-title"><router-link to="/">LowCode</router-link></div>
@@ -18,11 +19,13 @@ import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import { GlobalDataProps } from '@/store'
 import UserProfile from '../components/UserProfile.vue'
+import Uploader from '../components/Uploader.vue'
 
 export default defineComponent({
   name: 'Index',
   components: {
-    UserProfile
+    UserProfile,
+    Uploader
   },
   setup () {
     const store = useStore<GlobalDataProps>()
