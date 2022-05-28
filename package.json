@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@types/axios": "^0.14.0",
     "@types/lodash-es": "^4.17.6",
     "@types/rgb-hex": "^3.0.0",
